@@ -77,6 +77,11 @@
           console.log("clicked on the photo toggle button");
           $("#myphoto").fadeToggle("1500", "linear");
         });
+
+        $("space").click(function() {
+          console.log("clicked the 'space' button");
+          $("hidden_text").text("Ad Astra Per Aspera");
+        });
         
       });
     </script>
@@ -156,6 +161,9 @@
     </table>
 
     <hr>
+  <div id="hidden_text">
+      <button id="space">Space... The final frontier...</button>
+  </div>
     </div>
   </body>
 </html>
