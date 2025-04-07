@@ -16,7 +16,7 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-         $(document).ready( function() {
+         $(document).ready(function () {
               // this is the secret word!
               word =  "y o u r w o r d";
               blank = "- - - - - - - -";
@@ -34,7 +34,7 @@
               gameLost = false;
                    
               // when a user clicks on a letter... this is where everything happens!
-              $(".letter").click( function() {
+              $(".letter").click(function () {
 
                   // check if the game has been won or lost
                   if (gameWon != true && gameLost != true) {
@@ -55,17 +55,17 @@
                       
                     // if the letter isn't in the word, reduce
                     // the number of tries and check if they lost  (! means not)
-                    } else if (! word.includes(letter)) {
+                    } else if (!word.includes(letter)) {
                       
                       // reduce the number of remaining tries by 1
                       tries = tries - 1;
-                      $("#guesses").text("Mistakes, left: " + tries);
+                      $("#guesses").text("Mistakes left: " + tries);
 
                       // are they out of tries? then they lost!
                       if (tries < 1) {
-                        gameLost = true
+                        gameLost = true;
                         $("#info").text("Game over man, game over!");
-                    
+                      }
                     
                     // otherwise, put a line through it and
                     // add it to the found letters
@@ -92,15 +92,15 @@
                       // check if the player has won the game
                       if (!blank.includes("-")) {
                         gameWon = true;
-                        $("#info").text("Winner, winner, chicken dinner!")
+                        $("#info").text("Winner, winner, chicken dinner!");
                     }
 
                     // add the letter to letters already tried
                     triedLetters = triedLetters + letter;
                     console.log("triedLetters is ", triedLetters);
                     console.log("word is" , word); 
-                      }
-                 
+                 }
+              }   
 
             });
            //
