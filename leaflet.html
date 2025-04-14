@@ -56,7 +56,7 @@
       var distanceMeters = clickedLatLng.distanceTo(teeboxLatLng);
       popup
         .setLatLng(e.latlng)
-        .setContent("Meters from the tee box: " + e.latlng.toString())
+        .setContent("Meters from the tee box: " + distanceMeters)
         .openOn(map);
     }
       
