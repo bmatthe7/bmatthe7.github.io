@@ -46,6 +46,12 @@
     marker.bindPopup("<b>Hello World!</b><br>I am a popup.");
     circle.bindPopup("I am a circle.");
     polygon.bindPopup("I am a polygon.");
+
+    function onMapClick(e) {
+      alert("you clicked the map at " + e.latlng);
+    }
+
+    map.on('click", onMapClick);
   
 </script>
   </body>
