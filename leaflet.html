@@ -25,6 +25,8 @@
 
     var marker = L.marker([39.85454338092291, -105.08056970990621]).addTo(map);
 
+    var teebox = L.marker([39.85417845369152, -105.07977434782575]).addTo(map);
+
     var circle = L.circle([39.855266802708186, -105.07671302768118], {
       color: 'green',
       fillColor: '#90EE90',
@@ -57,7 +59,7 @@
 	
     function onMapClick(e) {
       popup
-        .setLatLng(e.latlng)
+        .distanceTo(e.teebox)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
     }
