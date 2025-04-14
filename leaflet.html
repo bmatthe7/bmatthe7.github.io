@@ -53,6 +53,8 @@
     polygon.bindPopup("Out of bounds hazard.");
     polygon2.bindPopup("Tee Box.");
 	
+    var popup = l.popup();
+	
     function onMapClick(e) {
       popup
         .setLatLng(e.latlng)
