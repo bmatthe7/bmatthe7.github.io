@@ -51,9 +51,12 @@
     var popup = L.popup();
 	
     function onMapClick(e) {
+      var clickedLatLng = e.latlng;
+      var teeboxLatLng = teebox.getLatLng();
+      var distanceMeters = clickedLatLng.distanceT0(teeboxLatLng);
       popup
-        e.distanceTo(teebox)
-        .setContent("You clicked the map at " + e.latlng.toString())
+        .setLatLng(e.latlng)
+        .setContent("Meters from the tee box: " + e.latlng.toString())
         .openOn(map);
     }
       
