@@ -25,6 +25,21 @@
 
     var marker = L.marker([39.8546682097932, -105.07817633196751]).addTo(map);
 
+    var circle = L.circle([39.855266802708186, -105.07671302768118], {
+      color: 'orange',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: 10
+      }).addTo(map);
+
+    var polygon = L.polygon([
+      [39.8544369761021, -105.0776368501798],
+      [39.85348156339408, -105.07716478142984],
+      [39.853946916934696, -105.07615090650094],
+	    [39.85503822038474, -105.07660151758044],
+	    [39.85468406343106, -105.07741154464006]
+      ]).addTo(map);
+  
     function onMapClick(e) {
       alert("you clicked the map at " + e.latlng);
     }
