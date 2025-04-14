@@ -39,11 +39,11 @@
 	    [39.85503822038474, -105.07660151758044],
 	    [39.85468406343106, -105.07741154464006]
       ]).addTo(map);
-  
-    function onMapClick(e) {
-      alert("you clicked the map at " + e.latlng);
-    }
 
+    marker.bindPopup("<b>Hello World!</b><br>I am a popup.");
+    circle.bindPopup("This is the first green.");
+    polygon.bindPopup("Out of bounds hazard.");
+	
     function onMapClick(e) {
       popup
         .setLatLng(e.latlng)
