@@ -95,7 +95,7 @@
 
 		//new style2 for percent over 65 layer
 		function style2(feature) {
-			d = feature.PCT_AGE65PLUS;
+			d = feature.properties.PCT_AGE65PLUS;
 			answer = d > 35 ? '#2b8cbe' :
 				d > 20 ? '#7bccc4' :
 				d > 10 ? '#bae4bc' :
