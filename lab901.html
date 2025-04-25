@@ -97,7 +97,12 @@
 		// let's add the Denver ACS data -- ##4 here
 		$.getJSON('./acs_denver_2021.geojson', function(data) {
 			acsDenver2021Layer = L.geoJSON(data,
-						       {style: style1}).addTo(map);
+						       {style: style1,
+						       onEachFeature : function (feature, layer) {
+							       layer.bindPopUp("percent Poverty: " +
+									feature.properties.PCT_POVERTY + "%");
+						       }
+						       }).addTo(map);
 
 			// move the map to this layer of data
 			map.panTo(acsDenver2021Layer.getBounds().getCenter());
