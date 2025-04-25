@@ -99,7 +99,7 @@
 			acsDenver2021Layer = L.geoJSON(data,
 						       {style: style1,
 						       onEachFeature : function (feature, layer) {
-							       layer.bindPopUp("percent Poverty: " +
+							       layer.bindPopup("percent Poverty: " +
 									feature.properties.PCT_POVERTY + "%");
 						       }
 						       }).addTo(map);
