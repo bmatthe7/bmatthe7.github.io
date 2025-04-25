@@ -2,39 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Histogram of Percent Age 65+</title>
+  <title>Histogram with Natural Breaks</title>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-statistics@7.7.4/dist/simple-statistics.min.js"></script>
 </head>
 <body>
-  <h2>Histogram of % Age 65+</h2>
+  <h2>Histogram of % Age 65+ (Jenks Natural Breaks)</h2>
   <div id="histogram" style="width: 80%; max-width: 800px; margin: auto;"></div>
 
   <script>
-    fetch('./acs_denver_2021.geojson')
+    fetch('data.json')
       .then(response => response.json())
       .then(data => {
-        const values = data.features.map(f => f.properties.PCT_AGE65PLUS);
+        // Extract values and filter out any null/undefined
+        const values = data.features
+          .map(f => f.properties.PCT_AGE65PLUS)
+          .filter(v => typeof v === 'number' && !isNaN(v));
 
+        // Compute natural breaks (Jenks) for 4 classes
+        const breaks = ss.jenks(values, 4);
+
+        // Plot histogram with custom bins
         const trace = {
           x: values,
           type: 'histogram',
+          xbins: {
+            start: breaks[0],
+            end: breaks[breaks.length - 1],
+            size: null // plotly will bin by custom edges below
+          },
+          autobinx: false,
           marker: {
-            color: 'rgba(255, 127, 80, 0.7)',
-            line: {
-              color: 'black',
-              width: 1
-            }
-          }
+            color: 'rgba(0, 128, 128, 0.6)',
+            line: { color: 'black', width: 1 }
+          },
+          xbin: { size: null },
+          histnorm: '',
         };
 
         const layout = {
-          xaxis: { title: '% Age 65 and Over' },
+          title: 'Histogram of % Age 65+ (Natural Breaks)',
+          xaxis: {
+            title: '% Age 65 and Over',
+            tickvals: breaks,
+            ticktext: breaks.map(b => b.toFixed(2)),
+          },
           yaxis: { title: 'Number of Tracts' },
-          bargap: 0.05,
-          title: 'Histogram of Percent Age 65+ (PCT_AGE65PLUS)'
+          bargap: 0.05
         };
 
-        Plotly.newPlot('histogram', [trace], layout);
+        // Plot with custom bin edges (manually sliced using histogram2d)
+        Plotly.newPlot('histogram', [trace], layout).then(() => {
+          console.log('Breaks:', breaks);
+        });
       })
       .catch(error => console.error('Error loading JSON:', error));
   </script>
