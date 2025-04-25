@@ -2,39 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Histogram of Total Population</title>
+  <title>Histogram of Percent Age 65+</title>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-  <h2>Histogram of Total Population</h2>
+  <h2>Histogram of % Age 65+</h2>
   <div id="histogram" style="width: 80%; max-width: 800px; margin: auto;"></div>
 
   <script>
-    // Load the GeoJSON file
     fetch('./acs_denver_2021.geojson')
       .then(response => response.json())
       .then(data => {
-        // Extract the TTL_POPULATION_ALL from each feature's properties
-        const values = data.features.map(f => f.PCT_AGE65PLUS);
+        const values = data.features.map(f => f.properties.PCT_AGE65PLUS);
 
-        // Create the histogram
         const trace = {
           x: values,
           type: 'histogram',
           marker: {
-            color: 'rgba(100, 149, 237, 0.7)',
+            color: 'rgba(255, 127, 80, 0.7)',
             line: {
-              color: 'rgba(0, 0, 0, 1)',
+              color: 'black',
               width: 1
             }
           }
         };
 
         const layout = {
-          xaxis: { title: 'Total Population' },
-          yaxis: { title: 'Count of Tracts' },
+          xaxis: { title: '% Age 65 and Over' },
+          yaxis: { title: 'Number of Tracts' },
           bargap: 0.05,
-          title: 'Histogram of Total Population (TTL_POPULATION_ALL)'
+          title: 'Histogram of Percent Age 65+ (PCT_AGE65PLUS)'
         };
 
         Plotly.newPlot('histogram', [trace], layout);
