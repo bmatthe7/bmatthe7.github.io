@@ -96,13 +96,10 @@
 		//new style2 for percent over 65 layer
 		function style2(feature) {
 			d = feature.PCT_AGE65PLUS;
-			answer = d > 30 ? '#800026' :
-				d > 20 ? '#DB0026' :
-				d > 15 ? '#E31A1C' :
-				d > 10 ? '#FC4E2A' :
-				d > 5 ? 'FD8D3C'  :
-				d > 3 ? '#FEB24C' :
-				d > 1 ? '#FED976' :
+			answer = d > 35 ? '#2b8cbe' :
+				d > 20 ? '#7bccc4' :
+				d > 10 ? '#bae4bc' :
+				d > 1 ? '#f0f9e8' :
 					  '#FFEDA0';
 			styleReturn = {
 				fillColor : answer,
