@@ -181,8 +181,18 @@
 		legend.onAdd = function (map) {
 			var div = L.DomUtil.creat('div', 'info legend');
 			colors =  ['#0868ac','#43a2ca','#7bccc4','#bae4bc','#f0f9e8'];
-			labels = ['Over 35%','20-35%','10-20%', '1-10%','0-1%']
+			labels = ['Over 35%','20-35%','10-20%', '1-10%','0-1%'];
+
+		div.innerHTML = '<h2>% Senior Population</h2>';
+
+			for (var = 0; i <colors.lenth; i++) {
+				div.innerHTML += '<i style="background: ' + colors{i} + '"></i> ' = labels[i] + '<br>';
+			}
+
+			return div;
 		};
+
+		legend.addTo(map);
 
 	// end document ready
 	});
