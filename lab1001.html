@@ -88,26 +88,7 @@
 
 		//LAB 9 FIRST CODE PUT HERE!!!!
 		// define a function to style choropleth map
-		function style1(feature) {
-			d = feature.properties.PCT_POVERTY;
-			answer = d > 30 ? '#800026' :
-				d > 20 ? '#DB0026' :
-				d > 15 ? '#E31A1C' :
-				d > 10 ? '#FC4E2A' :
-				d > 5 ? 'FD8D3C'  :
-				d > 3 ? '#FEB24C' :
-				d > 1 ? '#FED976' :
-					  '#FFEDA0';
-			styleReturn = {
-				fillColor : answer,
-				weight : 1,
-				opacity : 1,
-				color : 'white',
-				dashArray : '3',
-				fillOpacity : 0.7,
-			};
-			return styleReturn;
-		}
+		
 
 		//new style2 for percent over 65 layer
 		function style2(feature) {
@@ -142,36 +123,10 @@
 		});
 
 		
-		// let's add the Denver ACS data -- ##4 here
-		$.getJSON('./acs_denver_2021.geojson', function(data) {
-			acsDenver2021Layer = L.geoJSON(data,
-						       {style: style1,
-						       onEachFeature : function (feature, layer) {
-							       layer.bindPopup("percent Poverty: " +
-									feature.properties.PCT_POVERTY + "%");
-						       }
-						       });
-
-			// move the map to this layer of data
-			map.panTo(acsDenver2021Layer.getBounds().getCenter());
-
-			// add this layer to the layercontrol
-			layerControl.addOverlay(acsDenver2021Layer, "ACS Denver 2021");
-		});
-
 		
 		// let's try to add some remote DRCOG data
-		$.getJSON('https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_TRANS_RTDPARKNRIDE_P/FeatureServer/280/query?outFields=*&where=1%3D1&f=geojson', function(data) {
-			newLayer = L.geoJSON(data);
-			layerControl.addOverlay(newLayer, "RTD Park-N-Ride");
-
-		});
-
+		
 		//adding another layer from denver open data
-		$.getJSON('https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_TRANS_PARKTRAILSWALKS_L/FeatureServer/140/query?outFields=*&where=1%3D1&f=geojson', function(data) {
-			trails = L.geoJSON(data);
-			layerControl.addOverlay(trails, "Trails and Sidewalks");
-			
 		
 		});
 		
